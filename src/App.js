@@ -9,6 +9,15 @@ function App() {
   const [homeScore, setHomeScore] = useState(0)
   const [awayScore, setAwayScore] = useState(0)
 
+  const [quarter, addQuarter] = useState(1)
+
+  const quarterCounter = event => {
+    if(quarter <= 3){
+    addQuarter(quarter + 1)
+    }
+  }
+
+
   const homeFieldgoal = event => {
     setHomeScore(homeScore + 3)
   }
@@ -38,7 +47,7 @@ function App() {
             <div className="away__score">{awayScore}</div>
           </div>
         </div>
-        <BottomRow />
+        <BottomRow quarter={quarter} />
       </section>
       <section className="buttons">
         <div className="homeButtons">
@@ -50,7 +59,9 @@ function App() {
         <div className="awayButtons">
           <button className="awayButtons__touchdown" onClick={awayTouchdown}>Away Touchdown</button>
           <button className="awayButtons__fieldGoal" onClick={awayFieldgoal}>Away Field Goal</button>
+          
         </div>
+        <button onClick={quarterCounter}> Next Quarter</button>
       </section>
     </div>
   );
